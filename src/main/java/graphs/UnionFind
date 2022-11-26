@@ -1,0 +1,3 @@
+1. union(x,y) - unions the groups containing x and y
+
+2. find(x) - find the group x belongs to
