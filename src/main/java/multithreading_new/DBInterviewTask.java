@@ -1,4 +1,4 @@
-package multithreading;
+package multithreading_new;
 
 import javax.security.auth.login.LoginException;
 import java.util.*;
