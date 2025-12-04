@@ -1,0 +1,41 @@
+BeanFactory - отвечает за создание и хранение всех синглтонов (они создаются в начале работы спринг приложения)
+BeanDefinitionReader - считывает с XML все декларации бинов, кладет их в Map id <===> beanDefinition
+Потом BeanFactory складывает бины синглтоны в контейнер
+
+Для Singleton destroy method рабоатет, но не для Prototype
+
+BeanPostProcessor - позволяет настраивать бины до того как они попали в IoC Container
+Через него проходят все бины в момент создания (это паттерн ChainOfResponsibility)
+
+BeanFactoryPostProcessor — работает до создания бинов, изменяет описания бинов (BeanDefinition).
+Это как изменять чертеж авто
+Примеры: PropertySourcesPlaceholderConfigurer
+один метод postProcessBeanFactory()
+
+BeanPostProcessor — работает во время инициализации каждого созданного бина.
+Это как тюнинговать само авто
+Примеры: @Autowired, @Transactional, AOP
+Позволяет настраивать бины до того как они попадают в контекст
+У BeanPostProcessor есть два основных метода:
+postProcessBeforeInitialization - до метода init()
+между ними вызывается init()
+postProcessAfterInitialization - после init()
+
+RetentionPolicy (retention - удержание) для аннотаций
+SOURCE - видна только в коде, в байт-код не попадает, например @Override
+CLASS - компилируется в байт-код, но недоступна через Reflection
+RUNTIME - видны в рантайме
+
+По умолчанию xml конфигурации не знают ничего про аннотации, их обрабатывает BeanPostProcessor
+
+@PostConstruct - помечает метод инициализации бина, вызывается до создания прокси
+Это значит:
+@Transactional внутри @PostConstruct НЕ работает
+@Async тоже не работает
+@Validated тоже не работает
+Причина: прокси создаются в BeanPostProcessor.afterInitialization, а @PostConstruct вызывается до этого.
+
+Как работает прокси:
+DynamicProxy vs CGlib
+DynamicProxy - интерфейсы (предпочтительнее)
+CGlib - наследование

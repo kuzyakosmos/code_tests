@@ -1,0 +1,20 @@
+Немного неясен момент - если BPP отработал для TerminatorQuoter,
+то в applicationContext кладется прокси этого объекта,
+а в противном случае - объект самого класса
+
+1. Парсится xml c контекстом
+2. Создались BeanDefinition
+3. BeanFactoryPostProcessor покромсали BeanDefinition
+4. Создались BPP
+5. Пошел процесс создания объектов в IoC container (это по-сути хэшмапа)
+
+BeanFactoryPostProcessor
+• Позволяет настравить бин дифиншны, до того, как создаются бины
+• Этот интерфэйс имеет один единственный метод:
+• postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory)
+• Этот метод запустится на этапе, когда другие бины ещё не созданы,
+и есть только BeanDefinitions и сам BeanFactory
+
+ClassPathBeanDefinitionScanner
+• Не является ни BeanPostProcessor-м, ни BeanFactoryPostProcessor-om
+• Он ResourceLoaderAware

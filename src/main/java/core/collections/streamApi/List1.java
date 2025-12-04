@@ -1,4 +1,4 @@
-package collections.streamApi;
+package core.collections.streamApi;
 
 import java.util.ArrayList;
 import java.util.LinkedList;

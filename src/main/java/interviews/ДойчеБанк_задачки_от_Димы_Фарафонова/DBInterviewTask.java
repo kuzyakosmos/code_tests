@@ -1,4 +1,4 @@
-package multithreading_new;
+package interviews.ДойчеБанк_задачки_от_Димы_Фарафонова;
 
 import javax.security.auth.login.LoginException;
 import java.util.*;
