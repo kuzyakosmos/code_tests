@@ -1,5 +1,6 @@
 package multithreading.bookExamples;
 
+
 import net.jcip.annotations.NotThreadSafe;
 
 import java.util.concurrent.atomic.AtomicInteger;

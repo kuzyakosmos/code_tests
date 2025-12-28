@@ -1,11 +1,11 @@
 package yandex;
 
-import org.junit.jupiter.api.Test;
+//import org.junit.jupiter.api.Test;
 
 public class ATest {
-    private final A a = new A();
+//    private final A a = new A();
 
-    @Test
+//    @Test
     void test() {
     }
 }

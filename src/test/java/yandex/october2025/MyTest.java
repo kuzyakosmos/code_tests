@@ -2,6 +2,8 @@ package yandex.october2025;
 
 //import org.junit.jupiter.api.Test;
 
+//import org.junit.Test;
+
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 

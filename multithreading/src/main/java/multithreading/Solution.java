@@ -1,7 +1,5 @@
 package multithreading;
 
-import java.util.concurrent.Executors;
-
 public class Solution {
     public static void main(String[] args) {
         System.out.println(findDuplicate(new int[]{1, 3, 4, 2, 2}));

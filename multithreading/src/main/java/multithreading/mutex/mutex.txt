@@ -1,0 +1,6 @@
+Mutex - mutual exclusion
+Взаимное исключение, когда один поток захватывает мьютекс, остальные потоки ждут
+
+synchronized — классический mutex, ReentrantLock — явный mutex
+
+ReentrantLock нужен, когда synchronized уже недостаточно.

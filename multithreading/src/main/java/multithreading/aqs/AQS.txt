@@ -1,0 +1,9 @@
+AQS — это каркас для синхронизаторов: он хранит атомарное состояние и FIFO-очередь потоков.
+Конкретная семантика задаётся через tryAcquire/tryRelease.
+Большинство классов из java.util.concurrent построены поверх него.
+На нём построены: ReentrantLock, Semaphore, CountDownLatch, CyclicBarrier(частично), ReentrantReadWriteLock, ThreadPoolExecutor.Worker
+
+AQS предоставляет:
+атомарное состояние (state)
+FIFO-очередь потоков (CLH queue)
+шаблон для реализации блокировок и синхронизаторов

@@ -1,0 +1,33 @@
+Как внутри устроен ThreadPoolExecutor
+
+Таски всегда попадают в BlockingQueue<Runnable>
+
+Сами потоки хранятся тут
+private final HashSet<Worker> workers = new HashSet<>();
+
+private final class Worker
+    extends AbstractQueuedSynchronizer
+    implements Runnable {
+
+    final Thread thread;
+    Runnable firstTask;
+}
+Блокировка через AbstractQueuedSynchronizer - Это не ReentrantLock и не synchronized, а кастомный примитив блокировки, встроенный прямо в Worker.
+
+==============
+
+submit(Runnable) и submit(Callable) отличаются возвращаемым результатом и моделью исключений:
+Runnable не возвращает значение, а Callable возвращает результат и поддерживает checked exceptions.
+В обоих случаях результат и исключения инкапсулируются в Future и доступны через get().
+submit(Runnable) нужен, когда важно управление жизненным циклом задачи: отслеживание завершения,
+отмена, обработка исключений и интеграция с Future.
+execute(Runnable) — это fire-and-forget запуск без обратной связи.
+
+==============
+
+Есть несколько способов дождатся выполнения задач в ExecutorService:
+если использую submit → храню Future и жду через get()
+если задачи заранее известны → invokeAll
+если нужен контроль или нет результата → CountDownLatch
+если важно получать результат по готовности → CompletionService
+в современном коде → CompletableFuture.allOf()
