@@ -36,6 +36,7 @@ class LoginService {
     public boolean isLoggedIn(String username) {
         System.out.printf("[CredentialsValidator] Checking if user %s is logged in%n", username);
 
+        collectionLock.readLock();
         synchronized (collectionLock) {
             for (LoginInfo user : loggedInUsers) {
                 if (Objects.equals(user, username)) {
